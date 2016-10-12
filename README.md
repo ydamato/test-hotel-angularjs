@@ -17,4 +17,4 @@ Only once, allow to import all the dependancies
 
 ## See the result
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
