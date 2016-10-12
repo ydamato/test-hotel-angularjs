@@ -1,0 +1,81 @@
+<main class="main__hotels container">
+	<div class="panel panel-default">
+ 		<div class="panel-body">
+			<form class="form__filter">	
+				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+		  			<input type="text" id="filter--name" ng-model="filterName" class="form-control" placeholder="Name">
+				</div>			
+				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+					<div class="input-group">
+					  <span class="input-group-addon" id="basic-addon1">£</span>
+					  <input id="filter--cost" ng-model="filterMinCost" type="number" class="form-control" placeholder="Minimum cost">
+					</div>
+				</div>				
+				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+					<input id="filter--stars" ng-model="filterStars" type="number" class="form-control" placeholder="Minimum stars">
+				</div>				
+				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+					<div class="input-group">
+					  <input id="filter--rating" ng-model="filterUserRating" type="number" class="form-control" placeholder="Rating">
+					  <span class="input-group-addon" id="basic-addon2">/10</span>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">			
+					<div class="btn-group" role="group">
+					    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					     Sort by {{sortText}}
+					      <span class="caret"></span>
+					    </button>
+					    <ul class="dropdown-menu">
+						    <li><a href="javascript:void(0)" ng-click="changeSort('Distance', 'Distance')">Distance</a></li>
+						    <li><a href="javascript:void(0)" ng-click="changeSort('Stars', 'Stars')">Stars</a></li>
+						    <li><a href="javascript:void(0)" ng-click="changeSort('MinCost', 'Cost')">Cost</a></li>
+						    <li><a href="javascript:void(0)" ng-click="changeSort('UserRating', 'Rating')">Rating</a></li>
+					    </ul>
+				  	</div>			
+				</div>				
+				<div class="btn-group col-lg-2 col-md-2 col-sm-4 col-xs-4" role="group">
+				  <button type="button" class="btn btn-default" ng-click="applyFilters()">
+				  	<span class="glyphicon glyphicon-search"></span>
+				  	Filter results
+				  </button>
+				</div>				
+				<div style="clear:both"></div>
+			</form>
+		</div>
+	</div>
+	<div class="pagination__info">
+		Page {{currentPage}} of {{nbOfPages}}
+	</div>
+	<div class="hotel panel panel-default" ng-repeat="hotel in hotelsDisplayed">
+	<div class="table panel-body">
+		<div class="hotel__img valign--middle">
+			<img class="hotel__img" ng-src="{{hotel.ThumbnailUrl}}"/>
+		</div>
+		<div class="hotel__desc valign--middle">
+			<h4 class="hotel__name">{{hotel.Name}}, {{hotel.Location}}</h4>
+			<div class="hotel__type">
+				{{hotel.EstablishmentType}} - 
+				<span ng-repeat="i in getStarsArray(hotel.Stars)" class="icon--star glyphicon glyphicon-star"></span>
+			</div>
+			<div class="hotel__info">
+				Distance: <span class="info__value">{{hotel.Distance | distance}}</span>
+			</div>
+			<div>
+				Minimun cost: <span class="info__value">{{hotel.MinCost | currency:"£":0}}</span>
+			</div>
+			<div class="hotel__rating">
+				Rating: <span class="info__value">{{hotel.UserRating | rating:"10"}} {{hotel.UserRatingTitle | ratingTitle}}</span>
+			</div>
+			<div class="hotel__nb__rating">
+				Rating count: <span class="info__value">{{hotel.UserRatingCount}}</span>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="btn-group btn-group__pagination col-lg-6" role="group">
+	  <button type="button" ng-repeat="page in pagination" class="btn btn-default col-lg-1" ng-click="goToPage(page.link)">
+	  	{{page.text}}
+	  </button>
+	</div>
+</main>

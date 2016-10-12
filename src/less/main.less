@@ -1,0 +1,60 @@
+@xxs: 600px;
+
+.main__hotels {
+	form {
+		& > div {
+			@media screen and (max-width: @xxs) {
+				width: 50%;
+			}
+			margin: 10px 0;
+		}
+	}
+	.hotel {
+		margin: 5px 0;
+		.panel-body {
+			padding: 5px 10px;
+			.hotel__img {
+				width: 135px;
+				img {
+					width: 135px;
+					height: 135px;
+				}
+			}
+			.hotel__desc {
+				padding-left: 20px;
+				.info__value{
+					font-weight: bold;
+				}
+			}
+			.icon--star {
+				color: #CC0;
+			}	
+		}
+	}
+	.btn-group__pagination {
+		padding-left: 0;
+		padding-top: 10px;
+	}
+}
+
+.table {
+	display: table;
+	& > div {
+		display: table-cell;
+		&.valign--middle {
+			vertical-align: middle;
+		}
+	}
+}
+
+.align--center {
+	text-align: center;	
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
